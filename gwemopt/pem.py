@@ -1,8 +1,6 @@
-
-# coding: utf-8
-
-# In[81]:
-
+"""
+This module contains the Pem function, which calculates  #FIXME: what does it do?
+"""
 
 import numpy as np
 import numbers
@@ -12,14 +10,27 @@ import time
 
 import matplotlib.pyplot as plot
 import scipy.spatial as spatial
-from scipy import integrate, interpolate, optimize
-import pickle
-np.core.arrayprint._line_width = 200  
-
-# In[117]:
+from scipy import interpolate, optimize
+np.core.arrayprint._line_width = 200
 
 
 def Main(T_tot, readout_time, slew_time, PGW, tau, prob, method):
+    """
+    This function is the main body of the optimisation code
+
+    If the time needed to perform both slew and readout is just the larger
+    of the two, just set one of these parameters equal to the larger one
+    and the other equal to zero.
+
+    :param T_tot: total available telescope time, in hrs
+    :param readout_time: the time needed to perform readout, scalar, in seconds.
+    :param slew_time: the time needed to slew telescope , scalar, in seconds.
+    :param PGW: A matrix representing the fields and containing the GW p
+    :param tau: A vector containing the observation tau from 0.1 seconds to 1e5
+    :param prob: A vector containing the values of Pem at each of the values of tau. An output of Pem.
+    :param method: The method used to solve the optimisation problem.
+    :return maxprob, time_allocated
+    """
     #Main(T_tot,readout_time,slew_time,PGW,tau,prob)
     #Main is the main body of the optimisation code
     
@@ -46,7 +57,7 @@ def Main(T_tot, readout_time, slew_time, PGW, tau, prob, method):
         sys.exit('Please enter the total observation times, in hours')
         
     nof = len(PGW)
-    message1=['The number of fields is ', str(nof), '\n']
+    message1 = ['The number of fields is ', str(nof), '\n']
     message1 = ''.join(message1)
     print(message1)
     
@@ -57,9 +68,7 @@ def Main(T_tot, readout_time, slew_time, PGW, tau, prob, method):
     time_allocation = [[] for i in range(np.count_nonzero(PGW))]
     
     print('Start generating the optimal strategy...\n')
-    
-    
-    
+
     for nos in range(nof):
         T = T_tot-(readout_time+slew_time)*(nos+1);   #This computes the total time available to observation only.
         text = ['The number of fields being considered now is ', str(nos + 1), '.']
@@ -92,16 +101,12 @@ def Main(T_tot, readout_time, slew_time, PGW, tau, prob, method):
     
     text = ['The exit condition for optimize.root is:', ]
     
-    
     plot.plot(numberoffields, tprob)
     plot.xlabel('The total observed fields k')
     plot.ylabel('$P(D_{EM}|k)$')
     plot.show()
     
     return maxprob, time_allocation[maxindex]
-
-
-# In[96]:
 
 
 def Pem(lim_mag, lim_time, N_ref = 9.7847e9, L_min = 4.9370e31, L_max = 4.9370e33, model = '', sample_length = None, pMdM = None, tau = None, Loftau = 61, D_mu = 200.0e6, D_sig = 60.0e6, R = None, p_R = None):
@@ -260,9 +265,6 @@ def roty(angle):
 def rotz(angle):
     rotR = np.array([[np.cos(angle), np.sin(angle), 0], [-np.sin(angle), np.cos(angle), 0], [0, 0, 1]])
     return rotR
-
-
-# In[110]:
 
 
 def Greedy(fov, n, skymap, resolution, level):

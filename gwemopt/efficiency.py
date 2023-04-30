@@ -225,6 +225,7 @@ def save_efficiency_data(params, efficiency_struct, lightcurve_struct):
 
 
 def calculate_efficiency_metric(params, efficiency_struct):
+    # FIXME: this is not used anywhere
     dist_sum = 0
     weighted_sum = 0
     for i in range(0, len(efficiency_struct["distances"])):

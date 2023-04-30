@@ -1,5 +1,6 @@
 """
 Database schema.
+#FIXME: this file is not used
 """
 
 from flask_sqlalchemy import SQLAlchemy
@@ -41,6 +42,7 @@ def read_catalog():
     for galaxy in galaxies:
         gal = [galaxy.ra, galaxy.dec, galaxy.dist, galaxy.Bmag, galaxy.Kmag, galaxy.ipix]
         cat.add_row(gal)
+
 
 class Galaxy(db.Model):
     """Galaxy information"""

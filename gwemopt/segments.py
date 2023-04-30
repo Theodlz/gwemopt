@@ -89,6 +89,7 @@ def get_moon_segments(config_struct,segmentlist,observer,fxdbdy,radec):
     return moonsegmentlist
 
 def get_skybrightness(config_struct,segmentlist,observer,fxdbdy,radec):
+    # FIXME: This is not used
 
     moonsegmentlist = segments.segmentlist()
     if config_struct["filt"] == "c":
@@ -430,7 +431,9 @@ def get_segments_tiles(params, config_struct, tile_struct):
 
     return tile_struct
 
+
 def angular_distance(ra1, dec1, ra2, dec2):
+    # FIXME: this belongs in a utils file
 
     delt_lon = (ra1 - ra2)*np.pi/180.
     delt_lat = (dec1 - dec2)*np.pi/180.

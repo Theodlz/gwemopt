@@ -1,3 +1,6 @@
+"""
+# FIXME: What is this for? I vote delete.
+"""
 import datetime
 import os
 

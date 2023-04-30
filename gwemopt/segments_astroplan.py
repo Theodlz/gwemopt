@@ -1,4 +1,7 @@
-
+"""
+#FIXME: this is a duplicate of segments.py, but with astroplan instead of astropy
+probably we only need one of these, but I'm not sure which one is better
+"""
 import os, sys
 import numpy as np
 import healpy as hp
@@ -79,6 +82,7 @@ def get_moon_segments(config_struct,segmentlist,observer,fxdbdy,radec):
     return moonsegmentlist
 
 def get_skybrightness(config_struct,segmentlist,observer,fxdbdy,radec):
+    # FIXME: this is not used
 
     moonsegmentlist = segments.segmentlist()
     if config_struct["filt"] == "c":

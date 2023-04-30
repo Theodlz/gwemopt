@@ -1,3 +1,6 @@
+"""
+Module for accessing GraceDB superevent information and skymaps
+"""
 
 import os, sys, optparse
 import numpy as np

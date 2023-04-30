@@ -2,6 +2,7 @@ import numpy as np
 import healpy as hp
 
 def recombine(groups, sliced_array):
+    # FIXME: this is not used
     combined = np.array([])
     for group in groups:
         for i in range(len(sliced_array)):
@@ -9,6 +10,9 @@ def recombine(groups, sliced_array):
                 combined
 
 def similar_range(params, map_struct):
+    """
+    This function takes a map and splits it into regions of similar probability ???
+    """
 
     if params['doObservability']:
         observability_struct = map_struct['observability']
@@ -33,7 +37,7 @@ def similar_range(params, map_struct):
         start += region_size
         end += region_size
 
-    # Theres def a way to do this with numpy but i'm on a train, can't see docs
+    # Theres def a way to do this with numpy but i'm on a train, can't see docs # FIXME
     sum_hp = lambda arr: np.array([np.sum(row) for row in arr])
 
     sums = sum_hp(sliced_array)

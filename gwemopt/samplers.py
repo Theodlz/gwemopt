@@ -1,4 +1,7 @@
-
+"""
+This is the place where complex deoendencies (pymultinest) get used.
+# FIXME: remove if possible? Installing is a pain...
+"""
 import os, sys
 import time
 import copy
